@@ -1,18 +1,29 @@
-# AgeEstAI
-<<<<<<< HEAD
-Real-time **Age, Gender & Emotion** detection with a webcam.  
-**Stack:** TensorFlow/Keras, FastAPI, MediaPipe, Streamlit, Docker.
+# 👤 AgeEstAI  
+**Real-time Age, Gender & Emotion Estimation using Deep Learning + FastAPI + Streamlit**
 
-## Features
-- Face detection (MediaPipe) → face crop → normalized 224×224
-- Two models:
-  - **AgeGenderNet** → age bin (7 classes) + gender (2 classes)
-  - **EmotionNet**    → 7 emotions (angry, disgust, fear, happy, sad, surprise, neutral)
-- Streamlit web UI: requests camera permission and overlays predictions
-- FastAPI backend: `/infer` accepts frames and returns JSON predictions
-- Docker-ready; deploy to Azure Container Apps or Hugging Face Spaces
+A lightweight, end-to-end computer vision system that estimates **age (in years and age group)**, **gender**, and **emotion** from live webcam input — powered by **TensorFlow/Keras**, **FastAPI**, and **Streamlit**, with a **Dockerized deployment** pipeline.
 
-## Project Layout
-=======
-Real-time **Age, Gender & Emotion** detection (TensorFlow + FastAPI + MediaPipe + Streamlit).
->>>>>>> dc5f6b028103be2b702bb386fca327aacd4f33a7
+---
+
+## 🚀 Tech Stack
+| Layer | Tools & Frameworks |
+|-------|---------------------|
+| **Modeling** | TensorFlow / Keras (CNN, multitask learning), transfer learning (MobileNetV3) |
+| **Computer Vision** | MediaPipe Face Detection (cropping, alignment, normalization 224×224) |
+| **Backend** | FastAPI (RESTful `/infer` endpoint for inference as JSON) |
+| **Frontend** | Streamlit (real-time webcam overlay) |
+| **Containerization** | Docker (deploy to Azure / Hugging Face Spaces / any cloud) |
+
+---
+
+## 🧠 Features
+- 🔍 **Face detection** → automatic cropping & normalization  
+- 🧒 **AgeGenderNet** → predicts **age bin (7 classes)** + **gender (2 classes)**  
+- 😊 **EmotionNet** → classifies **7 emotions** (*angry, disgust, fear, happy, sad, surprise, neutral*)  
+- 🎥 **Streamlit web UI** → live camera with overlays and FPS counter  
+- ⚙️ **FastAPI backend** → accepts frames and returns JSON predictions  
+- 📦 **Docker-ready** → single command to run locally or deploy on cloud  
+
+---
+
+## 📂 Project Layout
