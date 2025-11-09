@@ -5,3 +5,8 @@ __pycache__/
 models/
 app/__pycache__/
 client/__pycache__/
+# local datasets & artifacts
+data/
+data/raw/
+data/processed/
+*.ipynb_checkpoints/
