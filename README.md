@@ -1,4 +1,5 @@
 # AgeEstAI
+<<<<<<< HEAD
 Real-time **Age, Gender & Emotion** detection with a webcam.  
 **Stack:** TensorFlow/Keras, FastAPI, MediaPipe, Streamlit, Docker.
 
@@ -12,3 +13,6 @@ Real-time **Age, Gender & Emotion** detection with a webcam.
 - Docker-ready; deploy to Azure Container Apps or Hugging Face Spaces
 
 ## Project Layout
+=======
+Real-time **Age, Gender & Emotion** detection (TensorFlow + FastAPI + MediaPipe + Streamlit).
+>>>>>>> dc5f6b028103be2b702bb386fca327aacd4f33a7
