@@ -1,0 +1,11 @@
+cd "C:\Users\srida\OneDrive\Desktop\repos\AgeEstAI\AgeEstAI"
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+
+# venv active
+python training\2_train_multitask_tf.py(for training the model)
+
+# venv active
+pip install --upgrade streamlit
+
+streamlit run client\streamlit_app.py

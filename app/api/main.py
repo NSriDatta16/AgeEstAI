@@ -1,3 +1,4 @@
+# app/api/main.py
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 import cv2, numpy as np, time
@@ -5,27 +6,32 @@ import cv2, numpy as np, time
 from app.vision.detect import FaceDetector
 from app.models.preprocess import crop_and_resize
 from app.models.infer import infer_batch
+from app.core.config import settings
 
-app = FastAPI(title="AgeEstAI")
+app = FastAPI(title=settings.APP_NAME)
 detector = FaceDetector()
 
 class InferResponse(BaseModel):
     boxes: list
-    ages: list
-    genders: list
-    emotions: list
+    ages: list[float]        # expected age (years)
+    genders: list[str]
+    emotions: list[str]
     fps: float
 
 @app.post("/infer", response_model=InferResponse)
 async def infer(file: UploadFile = File(...)):
     data = await file.read()
-    img = cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR)
+    bgr  = cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR)
+    if bgr is None:
+        return {"boxes": [], "ages": [], "genders": [], "emotions": [], "fps": 0.0}
 
     t0 = time.time()
-    boxes = detector.detect(img)
+    boxes = detector.detect(bgr)
     faces, kept = [], []
     for b in boxes:
-        face = crop_and_resize(img, b)
+        # convert BGR->RGB because our preprocess expects RGB
+        rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+        face = crop_and_resize(rgb, b, out_size=settings.IMG_SIZE)
         if face is not None:
             faces.append(face); kept.append(b)
 
