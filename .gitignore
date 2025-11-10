@@ -11,3 +11,14 @@ data/raw/
 data/processed/
 *.ipynb_checkpoints/
 data/
+.venv/
+__pycache__/
+*.pyc
+data/
+*.ipynb
+*.log
+*.tmp
+.DS_Store
+# big binaries you don't want in git history:
+*.mp4
+*.avi
