@@ -23,8 +23,6 @@ A lightweight, end-to-end computer vision system that estimates **age (in years 
 - 😊 **EmotionNet** → classifies **7 emotions** (*angry, disgust, fear, happy, sad, surprise, neutral*)  
 - 🎥 **Streamlit UI** → live camera with overlays & FPS  
 - ⚙️ **FastAPI** → `/infer` accepts an image and returns JSON  
-- 📦 **Docker-ready** → run locally or deploy on cloud
-
 ---
 
 ## 📂 Project Layout
