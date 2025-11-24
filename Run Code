@@ -1,0 +1,4 @@
+#cd "C:\Users\srida\OneDrive\Desktop\repos\AgeEstAI\AgeEstAI"
+#Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+#.\.venv\Scripts\Activate.ps1
+#streamlit run client\streamlit_app.py
