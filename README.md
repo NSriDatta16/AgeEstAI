@@ -2,7 +2,7 @@
 
 **Real-time Age, Gender & Emotion Estimation using Deep Learning + FastAPI + Streamlit**
 
-A lightweight, end-to-end computer vision system that estimates **age (in years and age group)**, **gender**, and **emotion** from live webcam input — powered by **TensorFlow/Keras**, **FastAPI**, and **Streamlit**, with a **Dockerized deployment** pipeline.
+A lightweight, end-to-end computer vision system that estimates **age (in years and age group)**, **gender**, and **emotion** from live webcam input — powered by **TensorFlow**, **FastAPI**, and **Streamlit**, with a **Dockerized deployment** pipeline.
 ---
 
 ## 🚀 Tech Stack
