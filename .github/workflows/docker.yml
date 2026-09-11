@@ -1,4 +1,4 @@
-name: Docker Build and Publish
+name: Build Publish and Deploy
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build image
+      - name: Build and publish image
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -33,3 +33,33 @@ jobs:
           tags: ghcr.io/nsridatta16/ageestai:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.AZURE_CREDENTIALS != '' }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy container app
+        uses: azure/cli@v2
+        with:
+          inlineScript: |
+            az containerapp up \
+              --name ageestai \
+              --resource-group ageestai-rg \
+              --location eastus \
+              --environment ageestai-env \
+              --source . \
+              --ingress external \
+              --target-port 8000 \
+              --min-replicas 1 \
+              --max-replicas 2
+      - name: Get public URL
+        uses: azure/cli@v2
+        with:
+          inlineScript: |
+            echo "https://$(az containerapp show --name ageestai --resource-group ageestai-rg --query properties.configuration.ingress.fqdn --output tsv)"
