@@ -5,7 +5,7 @@
 A lightweight, end-to-end computer vision system that estimates **age (in years and age group)**, **gender**, and **emotion** from live webcam input — powered by **TensorFlow**, **FastAPI**, and **Streamlit**, with a **Dockerized deployment** pipeline.
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 | Layer           | Tools & Frameworks |
 |-----------------|--------------------|
@@ -17,12 +17,12 @@ A lightweight, end-to-end computer vision system that estimates **age (in years 
 
 ---
 
-## 🧠 Features
-- 🔍 **Face detection** → automatic cropping & normalization  
-- 🧒 **AgeGenderNet** → predicts **age bin (7 classes)** + **gender (2 classes)** and shows **expected age in years**  
-- 😊 **EmotionNet** → classifies **7 emotions** (*angry, disgust, fear, happy, sad, surprise, neutral*)  
-- 🎥 **Streamlit UI** → live camera with overlays & FPS  
-- ⚙️ **FastAPI** → `/infer` accepts an image and returns JSON  
+## Features
+-  **Face detection** → automatic cropping & normalization  
+-  **AgeGenderNet** → predicts **age bin (7 classes)** + **gender (2 classes)** and shows **expected age in years**  
+-  **EmotionNet** → classifies **7 emotions** (*angry, disgust, fear, happy, sad, surprise, neutral*)  
+-  **Streamlit UI** → live camera with overlays & FPS  
+-  **FastAPI** → `/infer` accepts an image and returns JSON  
 ---
 
 ## 📂 Project Layout
