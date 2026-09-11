@@ -16,9 +16,12 @@ class AgeBinContractTest(unittest.TestCase):
                 self.assertEqual(age_to_bin(age), expected)
 
     def test_continuous_estimates_use_same_bin_contract(self):
+        self.assertEqual(age_to_bin(12.9), "0-12")
+        self.assertEqual(age_to_bin(19.9), "13-19")
         self.assertEqual(age_to_bin(27.4), "20-29")
+        self.assertEqual(age_to_bin(39.9), "30-39")
         self.assertEqual(age_to_bin(49.9), "40-49")
-        self.assertEqual(age_to_bin(64.9), "65+")
+        self.assertEqual(age_to_bin(64.9), "50-64")
 
 
 if __name__ == "__main__":
