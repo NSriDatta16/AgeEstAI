@@ -6,16 +6,16 @@ AGE_BINS = ["0-12", "13-19", "20-29", "30-39", "40-49", "50-64", "65+"]
 def age_to_bin(age: float) -> str:
     """Convert a continuous apparent-age estimate into the UI age bins."""
     age = float(age)
-    if age <= 12:
+    if age < 13:
         return "0-12"
-    if age <= 19:
+    if age < 20:
         return "13-19"
-    if age <= 29:
+    if age < 30:
         return "20-29"
-    if age <= 39:
+    if age < 40:
         return "30-39"
-    if age <= 49:
+    if age < 50:
         return "40-49"
-    if age <= 64:
+    if age < 65:
         return "50-64"
     return "65+"
