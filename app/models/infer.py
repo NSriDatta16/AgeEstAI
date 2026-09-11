@@ -5,27 +5,10 @@ from typing import Any
 import numpy as np
 from deepface import DeepFace
 
-AGE_BINS = ["0-12", "13-19", "20-29", "30-39", "40-49", "50-64", "65+"]
+from app.models.age_bins import AGE_BINS, age_to_bin
+
 EMOTIONS = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
 GENDERS = ["female", "male"]
-
-
-def age_to_bin(age: float) -> str:
-    """Convert the continuous apparent-age estimate into the project's bins."""
-    age = float(age)
-    if age <= 12:
-        return "0-12"
-    if age <= 19:
-        return "13-19"
-    if age <= 29:
-        return "20-29"
-    if age <= 39:
-        return "30-39"
-    if age <= 49:
-        return "40-49"
-    if age <= 64:
-        return "50-64"
-    return "65+"
 
 
 def _as_float(value: Any) -> float:
@@ -45,7 +28,13 @@ def _normalize_result(result: dict[str, Any]) -> dict[str, Any]:
         emotion = "neutral"
 
     dominant_gender = str(result.get("dominant_gender", "Unknown")).lower()
-    gender = "female" if dominant_gender in {"woman", "female"} else "male" if dominant_gender in {"man", "male"} else "unknown"
+    gender = (
+        "female"
+        if dominant_gender in {"woman", "female"}
+        else "male"
+        if dominant_gender in {"man", "male"}
+        else "unknown"
+    )
 
     return {
         "age": round(age, 1),
@@ -53,19 +42,18 @@ def _normalize_result(result: dict[str, Any]) -> dict[str, Any]:
         "gender": gender,
         "emotion": emotion,
         "emotion_confidence": round(_as_float(emotion_scores.get(emotion, 0.0)), 2),
-        "gender_confidence": round(_as_float(gender_scores.get("Woman" if gender == "female" else "Man", 0.0)), 2),
-        "face_confidence": round(_as_float(result.get("face_confidence", result.get("confidence", 0.0))), 3),
+        "gender_confidence": round(
+            _as_float(gender_scores.get("Woman" if gender == "female" else "Man", 0.0)), 2
+        ),
+        "face_confidence": round(
+            _as_float(result.get("face_confidence", result.get("confidence", 0.0))), 3
+        ),
         "facial_area": result.get("region") or result.get("facial_area") or {},
     }
 
 
 def infer_image(image_bgr: np.ndarray, max_faces: int = 5) -> list[dict[str, Any]]:
-    """Analyze all detected faces in one image.
-
-    DeepFace performs face detection, alignment and the age/emotion inference using
-    pretrained facial-attribute models. This replaces the previous custom classifier
-    path, which depended on missing local model artifacts and inconsistent labels.
-    """
+    """Analyze all detected faces in one image."""
     if image_bgr is None or image_bgr.size == 0:
         return []
 
