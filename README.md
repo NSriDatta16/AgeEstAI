@@ -43,7 +43,7 @@ Continuous age -> deterministic age bin
 JSON predictions / browser overlay
 ```
 
-DeepFace is currently pinned to `0.0.100`, released in May 2026. citeturn0search0
+DeepFace is pinned to `0.0.100`.
 
 ## Run locally
 
