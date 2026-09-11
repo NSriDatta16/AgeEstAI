@@ -39,12 +39,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - name: Azure login
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Deploy container app
+      - name: Deploy public GHCR image to Azure Container Apps
         uses: azure/cli@v2
         with:
           inlineScript: |
@@ -53,7 +52,7 @@ jobs:
               --resource-group ageestai-rg \
               --location eastus \
               --environment ageestai-env \
-              --source . \
+              --image ghcr.io/nsridatta16/ageestai:latest \
               --ingress external \
               --target-port 8000 \
               --min-replicas 1 \
