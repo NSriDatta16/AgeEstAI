@@ -1,0 +1,17 @@
+name: Unit Tests
+
+on:
+  push:
+    branches: [main, "fix/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run age-bin contract tests
+        env:
+          PYTHONPATH: .
+        run: python tests/test_age_bins.py
