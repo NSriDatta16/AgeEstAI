@@ -35,7 +35,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   deploy:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.AZURE_CREDENTIALS != '' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
