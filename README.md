@@ -30,17 +30,17 @@ A lightweight, end-to-end computer vision system that estimates **age (in years 
 ```text
 AgeEstAI/
 ├─ app/
-│  ├─ api/                # FastAPI backend
+│  ├─ api/               
 │  │  └─ main.py
-│  ├─ core/               # config, settings
+│  ├─ core/               
 │  │  └─ config.py
-│  ├─ models/             # model loading & inference utils
+│  ├─ models/            
 │  │  ├─ load.py
 │  │  └─ infer.py
-│  └─ vision/             # face detection utils
+│  └─ vision/             
 │     └─ detect.py
 ├─ client/
-│  └─ streamlit_app.py    # real-time Streamlit UI
+│  └─ streamlit_app.py    
 ├─ models/
 │  ├─ age_gender_finetuned.keras
 │  └─ emotion_finetuned.keras
